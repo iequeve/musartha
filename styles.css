@@ -390,68 +390,87 @@ strong {
 }
 
 @media (max-width: 992px) {
+    /* Prevent large text from breaking the layout */
+    .hero-content h1 {
+        font-size: 2.5rem; /* Reduced for mobile */
+        word-wrap: break-word;
+    }
+
     .usage-section {
         flex-direction: column;
         gap: 30px;
     }
-    
+
     .usage-section.reverse {
         flex-direction: column;
     }
-    
+
     .usage-text {
-        padding: 30px;
+        padding: 20px;
     }
-    
+
     .usage-image {
-        min-height: 300px;
+        min-height: 250px;
         aspect-ratio: 16 / 9;
     }
 
+    /* Fix Payment Cards exceeding borders */
     .payment-methods {
         flex-direction: column;
+        align-items: center;
         gap: 20px;
     }
 
-    .hero-content {
-        padding: 40px 20px;
+    .payment-method {
+        width: 100%; /* Allow it to shrink */
+        max-width: 320px; /* But keep it readable */
+        box-sizing: border-box;
     }
 
-    .hero-content h1 {
-        font-size: 3rem;
+    /* Roadmap Mobile Fix */
+    .roadmap-timeline::before {
+        left: 15px; /* Pull line closer to edge */
     }
 
-    .hero-image {
-        max-width: 100%;
+    .roadmap-item {
+        flex-direction: column; /* Stack date above description for better space */
+        align-items: flex-start;
+        padding-left: 40px; /* Room for the line/dot */
+        padding-right: 0;
+    }
+
+    .roadmap-date {
+        flex: none;
+        width: auto;
+        text-align: left;
+        margin-right: 0;
+        margin-bottom: 5px; /* Space between date and card */
+        padding-block: 0;
+        font-size: 1.1rem;
+    }
+
+    .roadmap-description {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Adjust the "speech bubble" arrow for the new layout */
+    .roadmap-description::before {
+        left: 10px;
+        top: -10px;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-bottom: 10px solid var(--card-bg); /* Point arrow UP instead of LEFT */
+        border-top: 0;
+        transform: none;
+    }
+
+    .roadmap-item::after {
+        left: 15px; /* Align dot with the new line position */
+        top: 12px; /* Align dot with the date text */
     }
 
     .customers-grid {
         grid-template-columns: 1fr;
-    }
-
-    .roadmap-timeline::before {
-        left: 20px;
-    }
-
-    .roadmap-item {
-        flex-direction: row; /* Keep row for consistency, but adjust if needed */
-        align-items: left;
-        padding: 0 20px;
-    }
-    .roadmap-date {
-        flex: 0 0 100px; /* Adjust for mobile */
-        text-align: right;
-        padding-block: 20px;
-        margin-right: 40px; /* Add space between date and description */
-    }
-    .roadmap-description::before {
-        left: -20px;
-        border-right: 10px solid var(--card-bg);
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        transform: translateY(-50%);
-    }
-    .roadmap-item::after {
-        left: 20px;
     }
 }
