@@ -1,5 +1,10 @@
 /* styles.css */
-/* To mimic the narrow screen behavior (stacking to one side), I've changed the wide screen layout to always place dates on the left and descriptions on the right, like in mobile view. This avoids alternating and prevents any potential collision by keeping everything on one side of the line. The line is moved to the left, and items are aligned accordingly. */
+
+/* Global Reset & Safety */
+*, *::before, *::after {
+    box-sizing: border-box; /* Ensures padding doesn't push elements outside their width */
+}
+
 :root {
     --bg-color: #0f0f0f;
     --text-color: #e0e0e0;
@@ -17,6 +22,13 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll bars */
+}
+
+img, video {
+    max-width: 100%; /* Prevents images from ever being wider than the screen */
+    height: auto;
+    display: block;
 }
 
 .container {
@@ -52,8 +64,9 @@ h1, h2, h3 {
 
 .hero-image {
     max-width: 600px;
+    width: 100%;
     height: auto;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     border-radius: 16px;
     box-shadow: var(--shadow);
     transition: transform 0.4s ease;
@@ -220,7 +233,7 @@ strong {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding-right: 40px 0;
+    padding: 40px 0;
 }
 
 .roadmap-timeline::before {
@@ -228,7 +241,7 @@ strong {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 22%; /* Moved line to the left for one-sided layout */
+    left: 22%;
     width: 2px;
     background: var(--primary-accent);
 }
@@ -238,22 +251,21 @@ strong {
     align-items: center;
     position: relative;
     margin-bottom: 40px;
-    padding-right: 0 40px;
 }
 
 .roadmap-date {
-    flex: 0 0 20%; /* Fixed width for dates on left */
+    flex: 0 0 20%;
     font-size: 1.4rem;
     font-weight: bold;
     color: var(--primary-accent);
     text-align: right;
-    margin-right: 40px; /* Add space between date and description */
+    margin-right: 40px;
 }
 
 .roadmap-description {
     flex: 1;
     background: var(--card-bg);
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: var(--shadow);
     position: relative;
@@ -275,7 +287,7 @@ strong {
 .roadmap-item::after {
     content: '';
     position: absolute;
-    left: 22%; /* Aligned with the line */
+    left: 22%;
     top: 50%;
     width: 16px;
     height: 16px;
@@ -333,6 +345,7 @@ strong {
 .payment-methods {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
     gap: 40px;
     margin-bottom: 2rem;
 }
@@ -342,7 +355,8 @@ strong {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px var(--shadow);
-    width: 300px;
+    width: 100%; /* Responsive width */
+    max-width: 320px;
     transition: transform 0.3s ease;
     text-align: center;
 }
@@ -360,22 +374,27 @@ strong {
 .payment-logo {
     width: 80px;
     height: auto;
-    margin-bottom: 1rem;
+    margin: 0 auto 1rem;
 }
 
 .address {
     font-family: monospace;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     word-break: break-all;
     color: var(--text-color);
     margin-bottom: 1rem;
+    background: rgba(0,0,0,0.2);
+    padding: 8px;
+    border-radius: 4px;
 }
 
 .payment-qr {
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
 }
 
 @keyframes fadeInUp {
@@ -389,93 +408,80 @@ strong {
     }
 }
 
-/* 1. GLOBAL RESET - Crucial for mobile borders */
-* {
-    box-sizing: border-box;
-    max-width: 100%;
-}
-
-html, body {
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* 2. FLUID IMAGE FIXES */
-.usage-image, .hero-image, .flavor img, .customer-item img {
-    width: 100% !important; 
-    height: auto !important; /* Maintains aspect ratio */
-    display: block;
-}
-
-/* 3. FLUID PAYMENT SECTION */
-.payment-methods {
-    display: flex;
-    flex-wrap: wrap; /* Allows cards to drop to next line if needed */
-    justify-content: center;
-    gap: 2%; /* Percentage-based gap */
-    width: 100%;
-    padding: 0 10px;
-}
-
-.payment-method {
-    flex: 1 1 300px; /* Grow/Shrink, but try to stay around 300px */
-    max-width: 95%; /* Ensures it never touches the screen edge */
-    width: 100%;
-    margin: 10px auto;
-}
-
-/* 4. RESPONSIVE MEDIA QUERIES */
+/* Mobile Adjustments (Max-width 992px) */
 @media (max-width: 992px) {
-    .container {
-        width: 95%; /* Fluid width */
-        padding: 20px 0;
-    }
-
-    .usage-section, .usage-section.reverse {
+    .usage-section {
         flex-direction: column;
-        width: 100%;
+        gap: 30px;
+    }
+    
+    .usage-section.reverse {
+        flex-direction: column;
+    }
+    
+    .usage-text {
+        padding: 30px;
+    }
+    
+    .usage-image {
+        min-height: 300px;
+        aspect-ratio: 16 / 9;
     }
 
-    .usage-text, .usage-image {
-        width: 100%;
-        flex: none;
+    .payment-methods {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
-    /* Roadmap Fluid Fix */
+    .hero-content {
+        padding: 40px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .customers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Roadmap Mobile Overhaul */
     .roadmap-timeline::before {
-        left: 5%;
+        left: 20px;
     }
 
     .roadmap-item {
         flex-direction: column;
         align-items: flex-start;
-        padding-left: 10%; /* Percentage based */
-        width: 100%;
+        padding-left: 45px;
+        margin-bottom: 40px;
     }
 
     .roadmap-date {
-        width: 100%;
+        flex: none;
         text-align: left;
+        margin-right: 0;
         margin-bottom: 10px;
+        font-size: 1.2rem;
     }
 
-    .roadmap-description {
-        width: 90%; /* Leaves room for the timeline line */
-    }
-
-    /* Fix for the little arrow on the roadmap */
     .roadmap-description::before {
-        left: 10px;
-        top: -10px;
-        border-right: 10px solid transparent;
-        border-left: 10px solid transparent;
-        border-bottom: 10px solid var(--card-bg);
-        border-top: 0;
+        display: none; /* Remove arrow on mobile for better fit */
     }
 
     .roadmap-item::after {
-        left: 5%;
+        left: 20px;
+    }
+}
+
+/* Extra Small Screens (Phones) */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 40px 15px;
     }
 }
