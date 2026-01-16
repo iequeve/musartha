@@ -405,6 +405,146 @@ strong {
     margin: 0 auto;
 }
 
+/* Rewards Box */
+.rewards-box {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 212, 255, 0.05));
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    padding: 40px;
+    border-radius: 16px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.rewards-box h3 {
+    font-size: 1.8rem;
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+.rewards-box > p:first-of-type {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.rewards-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 2rem;
+}
+
+.reward-item {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    min-width: 200px;
+    flex: 1;
+    max-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.reward-amount {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--primary-accent);
+    margin-bottom: 0.5rem;
+}
+
+.reward-item p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.reward-example {
+    font-size: 1rem;
+    color: rgba(0, 212, 255, 0.8);
+    background: rgba(0, 212, 255, 0.05);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 0;
+}
+
+/* Hiring Section */
+.hiring-section {
+    margin-top: 80px;
+    animation: fadeInUp 1s ease-out 0.9s;
+    animation-fill-mode: both;
+}
+
+.hiring-section h2 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.hiring-section > p {
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.job-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+}
+
+.job-card h3 {
+    font-size: 1.6rem;
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+.job-description {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.job-requirements {
+    font-size: 0.95rem;
+    color: rgba(224, 224, 224, 0.8);
+    background: rgba(0, 212, 255, 0.05);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    border-left: 3px solid var(--primary-accent);
+}
+
+.job-contact {
+    font-size: 0.9rem;
+    color: var(--primary-accent);
+    margin: 0;
+}
+
+.contact-placeholder {
+    background: rgba(0, 212, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -462,6 +602,41 @@ strong {
     .payment-methods {
         flex-direction: column;
         align-items: center;
+    }
+
+    .rewards-box {
+        padding: 25px;
+        margin-top: 30px;
+    }
+
+    .rewards-box h3 {
+        font-size: 1.5rem;
+    }
+
+    .rewards-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .reward-item {
+        min-width: auto;
+        max-width: 100%;
+    }
+
+    .jobs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .job-card {
+        padding: 20px;
+    }
+
+    .job-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .hiring-section h2 {
+        font-size: 2rem;
     }
 
     .roadmap-timeline::before {
