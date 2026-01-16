@@ -389,88 +389,93 @@ strong {
     }
 }
 
+/* 1. GLOBAL RESET - Crucial for mobile borders */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+html, body {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. FLUID IMAGE FIXES */
+.usage-image, .hero-image, .flavor img, .customer-item img {
+    width: 100% !important; 
+    height: auto !important; /* Maintains aspect ratio */
+    display: block;
+}
+
+/* 3. FLUID PAYMENT SECTION */
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to drop to next line if needed */
+    justify-content: center;
+    gap: 2%; /* Percentage-based gap */
+    width: 100%;
+    padding: 0 10px;
+}
+
+.payment-method {
+    flex: 1 1 300px; /* Grow/Shrink, but try to stay around 300px */
+    max-width: 95%; /* Ensures it never touches the screen edge */
+    width: 100%;
+    margin: 10px auto;
+}
+
+/* 4. RESPONSIVE MEDIA QUERIES */
 @media (max-width: 992px) {
-    /* Prevent large text from breaking the layout */
-    .hero-content h1 {
-        font-size: 2.5rem; /* Reduced for mobile */
-        word-wrap: break-word;
+    .container {
+        width: 95%; /* Fluid width */
+        padding: 20px 0;
     }
 
-    .usage-section {
+    .usage-section, .usage-section.reverse {
         flex-direction: column;
-        gap: 30px;
+        width: 100%;
     }
 
-    .usage-section.reverse {
-        flex-direction: column;
+    .usage-text, .usage-image {
+        width: 100%;
+        flex: none;
     }
 
-    .usage-text {
-        padding: 20px;
-    }
-
-    .usage-image {
-        min-height: 250px;
-        aspect-ratio: 16 / 9;
-    }
-
-    /* Fix Payment Cards exceeding borders */
-    .payment-methods {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .payment-method {
-        width: 100%; /* Allow it to shrink */
-        max-width: 320px; /* But keep it readable */
-        box-sizing: border-box;
-    }
-
-    /* Roadmap Mobile Fix */
+    /* Roadmap Fluid Fix */
     .roadmap-timeline::before {
-        left: 15px; /* Pull line closer to edge */
+        left: 5%;
     }
 
     .roadmap-item {
-        flex-direction: column; /* Stack date above description for better space */
+        flex-direction: column;
         align-items: flex-start;
-        padding-left: 40px; /* Room for the line/dot */
-        padding-right: 0;
+        padding-left: 10%; /* Percentage based */
+        width: 100%;
     }
 
     .roadmap-date {
-        flex: none;
-        width: auto;
+        width: 100%;
         text-align: left;
-        margin-right: 0;
-        margin-bottom: 5px; /* Space between date and card */
-        padding-block: 0;
-        font-size: 1.1rem;
+        margin-bottom: 10px;
     }
 
     .roadmap-description {
-        width: 100%;
-        box-sizing: border-box;
+        width: 90%; /* Leaves room for the timeline line */
     }
 
-    /* Adjust the "speech bubble" arrow for the new layout */
+    /* Fix for the little arrow on the roadmap */
     .roadmap-description::before {
         left: 10px;
         top: -10px;
         border-right: 10px solid transparent;
         border-left: 10px solid transparent;
-        border-bottom: 10px solid var(--card-bg); /* Point arrow UP instead of LEFT */
+        border-bottom: 10px solid var(--card-bg);
         border-top: 0;
-        transform: none;
     }
 
     .roadmap-item::after {
-        left: 15px; /* Align dot with the new line position */
-        top: 12px; /* Align dot with the date text */
-    }
-
-    .customers-grid {
-        grid-template-columns: 1fr;
+        left: 5%;
     }
 }
