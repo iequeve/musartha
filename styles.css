@@ -418,43 +418,52 @@ strong {
 
 /* Mobile Adjustments (Max-width 992px) */
 @media (max-width: 992px) {
-    .usage-section {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .usage-section.reverse {
-        flex-direction: column;
-    }
-    
-    .usage-text {
-        padding: 30px;
-    }
-    
-    .usage-image {
-        min-height: 300px;
-        aspect-ratio: 16 / 9;
-    }
-
-    .payment-methods {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    .container {
+        padding: 40px 15px; /* Less padding on small screens */
     }
 
     .hero-content {
-        padding: 40px 20px;
+        padding: 30px 20px;
     }
 
     .hero-content h1 {
         font-size: 2.5rem;
     }
 
-    .customers-grid {
-        grid-template-columns: 1fr;
+    /* Force the Hero Image to stay inside */
+    .hero-image {
+        width: 100%; 
+        max-width: 100%;
+        margin: 0 0 20px 0;
     }
 
-    /* Roadmap Mobile Overhaul */
+    .usage-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .usage-section.reverse {
+        flex-direction: column;
+    }
+
+    /* Force Usage Image to stay inside */
+    .usage-image {
+        min-height: auto; /* Remove fixed height */
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9; /* Wider ratio for phones */
+    }
+
+    .usage-text {
+        padding: 25px;
+        width: 100%;
+    }
+
+    .payment-methods {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .roadmap-timeline::before {
         left: 20px;
     }
@@ -463,19 +472,11 @@ strong {
         flex-direction: column;
         align-items: flex-start;
         padding-left: 45px;
-        margin-bottom: 40px;
     }
 
     .roadmap-date {
-        flex: none;
         text-align: left;
-        margin-right: 0;
         margin-bottom: 10px;
-        font-size: 1.2rem;
-    }
-
-    .roadmap-description::before {
-        display: none; /* Remove arrow on mobile for better fit */
     }
 
     .roadmap-item::after {
